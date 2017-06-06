@@ -1,0 +1,48 @@
+macro infix:<ff>(lhs, rhs) is tighter(infix:<=>) {
+    my active = False;
+    return quasi {
+        if {{{lhs}}} {
+            active = True;
+        }
+        my result = active;
+        if {{{rhs}}} {
+            active = False;
+        }
+        result;
+    };
+}
+
+my values = ["A", "B", "A", "B", "A"];
+for values -> v {
+    if v == "B" ff v == "B" {
+        say(v);
+    }
+    else {
+        say("x");
+    }
+}
+
+say("");
+
+macro infix:<fff>(lhs, rhs) is tighter(infix:<=>) {
+    my active = False;
+    return quasi {
+        my result = active;
+        if !active && {{{lhs}}} {
+            result = active = True;
+        }
+        else if active && {{{rhs}}} {
+            active = False;
+        }
+        result;
+    };
+}
+
+for values -> v {
+    if v == "B" fff v == "B" {
+        say(v);
+    }
+    else {
+        say("x");
+    }
+}

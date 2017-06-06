@@ -25,12 +25,6 @@ and usable macros ASAP.
 
 Here's the current proposed order of macro examples to tackle:
 
-* An `infix:<ff>` macro, same as Perl 6's operator. This macro hits a sweet
-  spot of being simple and also clearly needing to be a macro. It ends up
-  being code with some private state, since hitting the same `ff` expression
-  several times will have results depending on what has happened to that
-  expression before. ([#207](https://github.com/masak/007/issues/207))
-
 * A `swap` macro. Takes two lvalues and swaps their contents. The term
   "lvalue" here is significant, as these need to be assignable. (That's also
   why a simple sub wouldn't be enough in this case, since we have
